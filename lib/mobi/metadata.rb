@@ -6,6 +6,7 @@ module Mobi
                      106 => :published_at, 107 => :review, 108 => :contributor, 109 => :rights, 110 => :subject_code, 
                      111 => :type, 112 => :source, 113 => :asin, 114 => :version}
     attr_reader *EXTH_RECORDS.values
+    attr_reader :title
 
     attr_accessor :stream, :data, :mobi, :exth
     attr_reader :exth_records
@@ -16,6 +17,9 @@ module Mobi
       @exth_records = []
       return unless bookmobi?
       @mobi = mobi_stream
+      
+      @title = read_title
+
       @exth = exth_stream
     
       store_mobi_data
@@ -35,6 +39,13 @@ module Mobi
     def exth_stream
       exth_off = @mobi[20, 4].unpack('N*').first + 16 + @mobi.start
       StreamSlicer.new(stream, exth_off, @mobi.stop)
+    end
+    
+    def read_title
+      offset, = @mobi[84, 4].unpack('N*')
+      puts offset
+      length, = @mobi[88, 4].unpack('N*')
+      @mobi[offset.to_i, length.to_i]
     end
     
     def store_mobi_data
