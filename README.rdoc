@@ -1,6 +1,14 @@
 = mobi
 
-Description goes here.
+A Ruby Gem that reads MOBI metadata.
+
+== Warning
+
+This is still a work in progress. This gem is essentially made up of me playing around with the mobi file and extracting data.
+
+The gem does NOT handle any errors in a mobi document, or some edge cases.
+
+Tests will be added soon.
 
 == Contributing to mobi
  
