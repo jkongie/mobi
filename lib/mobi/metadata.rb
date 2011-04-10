@@ -16,10 +16,8 @@ module Mobi
       @data = StreamSlicer.new(stream)
       @exth_records = []
       return unless bookmobi?
-      @mobi = mobi_stream
-      
+      @mobi = mobi_stream    
       @title = read_title
-
       @exth = exth_stream
     
       store_mobi_data
@@ -43,7 +41,6 @@ module Mobi
     
     def read_title
       offset, = @mobi[84, 4].unpack('N*')
-      puts offset
       length, = @mobi[88, 4].unpack('N*')
       @mobi[offset.to_i, length.to_i]
     end
