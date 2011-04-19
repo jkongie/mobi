@@ -10,6 +10,24 @@ The gem does NOT handle any errors in a mobi document, or some edge cases.
 
 Tests will be added soon.
 
+== Installation
+
+  gem install mobi
+
+== Usage
+
+Creating a Mobi::Metadata object
+
+  Mobi::Metadata.new(File.open('/path/to/file.mobi'))
+  
+A handy convenience method to do the exact same thing
+
+  Mobi.metadata File.open('/path/to/file.mobi')
+
+== Thanks
+
+* Calibre open source project. I ripped off the idea of a Stream Slicer and got a better understanding of mobi files from their code base. Check them out at http://calibre-ebook.com/
+
 == Contributing to mobi
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
