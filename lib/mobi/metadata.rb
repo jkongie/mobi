@@ -65,15 +65,4 @@ module Mobi
     end
 
   end
-  
 end
-  
-# def record(self, n):
-#     if n >= self.nrecs:
-#         raise ValueError('non-existent record %r' % n)
-#     offoff = 78 + (8 * n)
-#     start, = unpack('>I', self.data[offoff + 0:offoff + 4])
-#     stop = None
-#     if n < (self.nrecs - 1):
-#         stop, = unpack('>I', self.data[offoff + 8:offoff + 12])
-#     return StreamSlicer(self.stream, start, stop)

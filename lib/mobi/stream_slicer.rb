@@ -37,31 +37,5 @@ module Mobi
       data = stream.read(size)
       return data
     end
-
-
-    # def [](key)
-    #   stream = self.stream
-    #   base = self.start
-    #   if key.is_a? Integer
-    #     stream.seek(base + key)
-    #     return stream.read(1)
-    #   end
-    #   if key.is_a? Range
-    #     start = key.first 
-    #     stop = key.last
-    # 
-    #     if key.max.nil?
-    #       start, stop = stop, start
-    #     end
-    #     size = stop - start
-    # 
-    #     return "" if size <= 0
-    # 
-    #     stream.seek(base + start)
-    #     data = stream.read(size)
-    #     return data
-    #   end
-    # end
-
   end
 end
