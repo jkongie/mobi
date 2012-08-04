@@ -8,7 +8,7 @@ describe 'PalmDocHeader' do
 
   before :all do
     file = File.open('spec/fixtures/sherlock.mobi')
-    stream    = Mobi::MetadataStreams.mobi_header_stream(file)
+    stream    = Mobi::MetadataStreams.palm_doc_header_stream(file)
 
     @header = Header::PalmDocHeader.new stream
   end
