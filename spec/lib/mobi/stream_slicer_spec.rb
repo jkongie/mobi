@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+require 'mobi/stream_slicer'
+
 describe Mobi::StreamSlicer do
   let(:file){ File.open('spec/fixtures/test.mobi') }
 

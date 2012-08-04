@@ -1,5 +1,8 @@
 require 'spec_helper'
 
+require 'mobi/metadata'
+require 'mobi/stream_slicer'
+
 describe Mobi::Metadata do
 
   context 'initialization' do
