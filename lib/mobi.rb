@@ -1,10 +1,13 @@
-require File.expand_path('../mobi/stream_slicer', __FILE__)
-require File.expand_path('../mobi/metadata', __FILE__)
+require 'mobi/stream_slicer'
+require 'mobi/metadata'
+require 'mobi/metadata_streams'
+require 'mobi/header/palm_doc_header'
+require 'mobi/header/mobi_header'
 
 module Mobi
 
   def self.metadata(file)
     Mobi::Metadata.new(file)
   end
-  
+
 end

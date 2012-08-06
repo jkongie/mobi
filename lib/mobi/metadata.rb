@@ -6,25 +6,40 @@ module Mobi
                      111 => :type, 112 => :source, 113 => :asin, 114 => :version }
 
     attr_reader *EXTH_RECORDS.values
-    attr_reader :title
 
     attr_accessor :stream, :data, :mobi, :exth
     attr_reader   :exth_records
 
     class InvalidMobi < ArgumentError;end;
 
-    def initialize(stream)
-      @stream       = stream
-      @data         = StreamSlicer.new(stream)
+    def initialize(file)
+      @stream       = file
+      @data         = StreamSlicer.new(file)
       @exth_records = []
 
       raise InvalidMobi, "The supplied file is not in a valid mobi format" unless bookmobi?
 
+      @record_zero_stream = MetadataStreams.record_zero_stream(file)
+
+      @palm_doc_header = Header::PalmDocHeader.new @record_zero_stream
+      @mobi_header     = Header::MobiHeader.new @record_zero_stream
+
       @mobi  = mobi_stream
-      @title = read_title
       @exth  = exth_stream
 
       store_mobi_data
+    end
+
+    # Gets the title of the book.
+    #
+    # Returns a String.
+    def title
+      return @title if @title
+
+      offset = @mobi_header.full_name_offset
+      length = @mobi_header.full_name_length
+
+      @title = @record_zero_stream[offset, length]
     end
 
     # Determines if the file is a valid mobi file
@@ -46,12 +61,6 @@ module Mobi
     def exth_stream
       exth_off = @mobi[20, 4].unpack('N*').first + 16 + @mobi.start
       StreamSlicer.new(stream, exth_off, @mobi.stop)
-    end
-
-    def read_title
-      offset, = @mobi[84, 4].unpack('N*')
-      length, = @mobi[88, 4].unpack('N*')
-      @mobi[offset.to_i, length.to_i]
     end
 
     def store_mobi_data
