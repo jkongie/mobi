@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "mobi"
   gem.homepage = "http://github.com/jkongie/mobi"
   gem.license = "MIT"
-  gem.summary = %Q{A Rubygem that inspects MOBI metadata}
-  gem.description = %Q{Mobi is a Rubygem that allows you to easily read MOBI e-book format metadata }
+  gem.summary = %Q{A Rubygem that inspects MOBI metadata.}
+  gem.description = %Q{Mobi is a Rubygem that allows you to easily read MOBI e-book format metadata.}
   gem.email = "jkongie@gmail.com"
   gem.authors = ["jkongie"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
