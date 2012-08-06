@@ -14,17 +14,23 @@ v0.2 should be fully backwards compatible with v0.1.2.
 
 Creating a Mobi::Metadata object
 
-`Mobi::Metadata.new(File.open('/path/to/file.mobi'))`
+```ruby
+Mobi::Metadata.new(File.open('/path/to/file.mobi'))
+```
 
 A handy convenience method to do the exact same thing
 
-`Mobi.metadata File.open('/path/to/file.mobi')`
+```ruby
+Mobi.metadata File.open('/path/to/file.mobi')
+```
 
 Getting metadata information is as simple as:
 
 ```ruby
-metadata = Mobi.metadata File.open('/path/to/file.mobi')
-author = metadata.author
+metadata = Mobi.metadata File.open('/path/to/fellowship_of_the_ring.mobi')
+#=> #<Mobi::Metadata>
+metadata.author
+#=> "J.R.R. Tolkien"
 ```
 
 Supported metadata options are:
@@ -51,18 +57,18 @@ You can drill down and get the PalmDOC and MOBI header details:
 
 ```ruby
 palm_doc_header = metadata.palm_doc_header
-# => #<Mobi::Header::PalmDocHeader>
+#=> #<Mobi::Header::PalmDocHeader>
 palm_doc_header.raw_compression_type
-# => 2
+#=> 2
 palm_doc_header.compression_type
-# => "PalmDOC"
+#=> "PalmDOC"
 
 mobi_header = metadata.mobi_header
-# => #<Mobi::Header::MobiHeader>
+#=> #<Mobi::Header::MobiHeader>
 mobi_header.raw_mobi_type
-# => 2
+#=> 2
 mobi_header.mobi_type
-# => "MOBIpocket Book"
+#=> "MOBIpocket Book"
 ```
 
 See the source for the more methods.
