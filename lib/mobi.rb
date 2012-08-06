@@ -3,6 +3,7 @@ require 'mobi/metadata'
 require 'mobi/metadata_streams'
 require 'mobi/header/palm_doc_header'
 require 'mobi/header/mobi_header'
+require 'mobi/header/exth_header'
 
 module Mobi
 
