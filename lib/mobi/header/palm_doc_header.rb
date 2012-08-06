@@ -1,3 +1,5 @@
+# Public:
+
 module Header
   class PalmDocHeader
 
@@ -10,17 +12,21 @@ module Header
       @data = data
     end
 
+    # The compression type as returned from byte code.
+    #
+    # Returns a Fixnum.
+    def raw_compression_type
+      @compression_type ||= @data[0, 2].unpack('n*')[0]
+    end
+
     # The compression type.
-    #
-    # Valid codes are:
-    #
-    # 1 - No compression
-    # 2 - PalmDOC compression
-    # 17480 - HUFF/CDIC compression
     #
     # Returns a Fixnum.
     def compression_type
-      @compression_type ||= @data[0, 2].unpack('n*')[0]
+      { 1 => 'None',
+        2 => 'PalmDOC',
+        17480 => 'HUFF/CDIC'
+      }.fetch(raw_compression_type)
     end
 
     # The uncompressed length of the entire text of the book.
@@ -45,17 +51,21 @@ module Header
       @record_size ||= @data[10, 2].unpack('n*')[0]
     end
 
-    # The encryption type.
-    #
-    # Valid codes are:
-    #
-    # 0 - No encryption,
-    # 1 - Old Mobipocket encryption
-    # 2 - Mobipocket encryption
+    # The encryption type as returned from byte code.
     #
     # Returns a Fixnum
-    def encryption_type
+    def raw_encryption_type
       @encryption_type ||= @data[12, 2].unpack('n*')[0]
+    end
+
+    # The encryption type.
+    #
+    # Returns a String.
+    def encryption_type
+      { 0 => 'None',
+        1 => 'Old MOBIpocket',
+        2 => 'MOBIpocket'
+      }.fetch(raw_encryption_type)
     end
 
   end
