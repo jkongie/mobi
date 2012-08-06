@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'mobi/stream_slicer'
 
 describe Mobi::StreamSlicer do
-  let(:file){ File.open('spec/fixtures/test.mobi') }
+  let(:file){ File.open('spec/fixtures/sherlock.mobi') }
 
   context "instantiation" do
     it "should set the start point to 0 if no start is provided" do
@@ -13,7 +13,7 @@ describe Mobi::StreamSlicer do
 
     it "should set the end point to the file end if no stop is provided" do
       ss = Mobi::StreamSlicer.new(file)
-      ss.stop.should == 63697
+      ss.stop.should == 111449
     end
 
     it "should set the start and stop points to the arguments provided" do
