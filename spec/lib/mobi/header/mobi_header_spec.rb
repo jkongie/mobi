@@ -4,12 +4,12 @@ require 'mobi/stream_slicer'
 require 'mobi/metadata_streams'
 require 'mobi/header/mobi_header'
 
-describe Header::MobiHeader do
+describe Mobi::Header::MobiHeader do
   before :all do
     file = File.open('spec/fixtures/sherlock.mobi')
     stream    = Mobi::MetadataStreams.record_zero_stream(file)
 
-    @header = Header::MobiHeader.new stream
+    @header = Mobi::Header::MobiHeader.new stream
   end
 
   it 'gets the identifier' do

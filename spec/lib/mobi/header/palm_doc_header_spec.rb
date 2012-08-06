@@ -4,13 +4,13 @@ require 'mobi/stream_slicer'
 require 'mobi/metadata_streams'
 require 'mobi/header/palm_doc_header'
 
-describe 'PalmDocHeader' do
+describe Mobi::Header::PalmDocHeader do
 
   before :all do
     file = File.open('spec/fixtures/sherlock.mobi')
     stream    = Mobi::MetadataStreams.record_zero_stream(file)
 
-    @header = Header::PalmDocHeader.new stream
+    @header = Mobi::Header::PalmDocHeader.new stream
   end
 
   it 'gets the raw compression_type' do

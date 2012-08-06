@@ -5,16 +5,16 @@ require 'mobi/metadata_streams'
 require 'mobi/header/mobi_header'
 require 'mobi/header/exth_header'
 
-describe Header::ExthHeader do
+describe Mobi::Header::ExthHeader do
 
   before :all do
     file   = File.open('spec/fixtures/sherlock.mobi')
 
     record_zero_stream = Mobi::MetadataStreams.record_zero_stream(file)
-    mobi_header        = Header::MobiHeader.new record_zero_stream
+    mobi_header        = Mobi::Header::MobiHeader.new record_zero_stream
     exth_stream        = Mobi::MetadataStreams.exth_stream(file, mobi_header.header_length)
 
-    @header = Header::ExthHeader.new exth_stream
+    @header = Mobi::Header::ExthHeader.new exth_stream
   end
 
   it 'gets the author' do
