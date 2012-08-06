@@ -1,23 +1,21 @@
+require 'forwardable'
+
 module Mobi
   class Metadata
-    EXTH_RECORDS = { 100 => :author, 101 => :publisher, 102 => :imprint, 103 => :description, 104 => :isbn, 105 => :subject,
-                     106 => :published_at, 107 => :review, 108 => :contributor, 109 => :rights, 110 => :subject_code,
-                     111 => :type, 112 => :source, 113 => :asin, 114 => :version }
+    extend Forwardable
 
-    attr_reader *EXTH_RECORDS.values
+    EXTH_RECORDS = %w(author publisher imprint description isbn subject
+                      published_at review contributor rights subject_code type
+                      source asin version)
 
-    attr_accessor :stream, :data, :exth
-    attr_reader   :exth_records
-
+    # Raw data stream
+    attr_reader :data
     # Individual header classes for your reading pleasure.
     attr_reader :palm_doc_header, :mobi_header, :exth_header
 
-    class InvalidMobi < ArgumentError;end;
-
     def initialize(file)
-      @stream       = file
-      @data         = StreamSlicer.new(file)
-      @exth_records = []
+      @file = file
+      @data = StreamSlicer.new(file)
 
       raise InvalidMobi, "The supplied file is not in a valid mobi format" unless bookmobi?
 
@@ -27,10 +25,6 @@ module Mobi
 
       @exth_stream = MetadataStreams.exth_stream(file, @mobi_header.header_length)
       @exth_header = Header::ExthHeader.new @exth_stream
-
-      @exth  = MetadataStreams.exth_stream(file, @mobi_header.header_length)
-
-      store_mobi_data
     end
 
     # Gets the title of the book.
@@ -47,31 +41,16 @@ module Mobi
 
     # Determines if the file is a valid mobi file.
     #
-    # Mobi files have a
-    #
-    # Returns true if the file is a valid mobi file
+    # Returns true if the file is a valid MOBI.
     def bookmobi?
       @data[60, 8] == "BOOKMOBI"
     end
 
-    def store_mobi_data
-      record_count, = @exth[8, 4].unpack('N*')
-      start = 12
-      record_count.times do
-        code, = @exth[start, 4].unpack('N*')
-        code  = code.to_i
-
-        length, = @exth[start + 4, 4].unpack('N*')
-        value   = @exth[start + 8, length - 8]
-
-        if EXTH_RECORDS[code]
-          instance_variable_set "@#{EXTH_RECORDS[code].to_s}", value
-          @exth_records << EXTH_RECORDS[code]
-        end
-
-        start += length
-      end
+    # Delegate EXTH records types to the EXTH header.
+    EXTH_RECORDS.each do |type|
+      def_delegators :@exth_header, type.to_sym, type.to_sym
     end
 
+    class InvalidMobi < ArgumentError;end;
   end
 end
