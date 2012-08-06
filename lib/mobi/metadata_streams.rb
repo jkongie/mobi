@@ -12,7 +12,9 @@ module Mobi
       StreamSlicer.new(file, start, stop)
     end
 
+    # Creates a stream starting at the EXTH header in Record 0.
     #
+    # Returns a StreamSlicer.
     def self.exth_stream(file, header_length)
       record_zero_stream = record_zero_stream(file)
 
@@ -39,7 +41,6 @@ module Mobi
       stop,  = data[offset + 8, offset + 12].unpack('N*');
       [start, stop]
     end
-
 
   end
 end
