@@ -2,13 +2,15 @@
 
 A Ruby Gem that reads MOBI metadata.
 
+## Ruby
+
+Compatible up to ruby 2.0.0p0.
+
+I haven't tested beyond that version, but it should work.
+
 ## Installation
 
 `gem install mobi`
-
-## Updates
-
-v0.2 should be fully backwards compatible with v0.1.2.
 
 ## Usage
 
@@ -51,9 +53,7 @@ Supported metadata options are:
 * asin
 * version
 
-### New!
-
-You can drill down and get the PalmDOC and MOBI header details:
+You can also drill down and get the PalmDOC and MOBI header details:
 
 ```ruby
 palm_doc_header = metadata.palm_doc_header
@@ -71,7 +71,7 @@ mobi_header.mobi_type
 #=> "MOBIpocket Book"
 ```
 
-See the source for the more methods.
+See the source for more methods.
 
 ## Thanks
 
