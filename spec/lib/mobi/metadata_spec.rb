@@ -3,11 +3,14 @@ require 'spec_helper'
 require 'mobi'
 
 describe Mobi::Metadata do
-  let(:file){ File.open('spec/fixtures/sherlock.mobi') }
+  before :all do
+    @file = File.open('spec/fixtures/sherlock.mobi')
+  end
+
 
   context 'initialization' do
     it 'should instantiate a StreamSlicer from the file' do
-      metadata = Mobi::Metadata.new(file)
+      metadata = Mobi::Metadata.new(@file)
 
       metadata.data.should be_instance_of(Mobi::StreamSlicer)
     end
@@ -17,12 +20,12 @@ describe Mobi::Metadata do
         mock(m).bookmobi? { false }
       end
 
-      lambda{ Mobi::Metadata.new(file) }.should raise_exception(Mobi::Metadata::InvalidMobi)
+      lambda{ Mobi::Metadata.new(@file) }.should raise_exception(Mobi::Metadata::InvalidMobi)
     end
 
     context 'instantiating headers' do
       before :all do
-        @metadata = Mobi::Metadata.new(file)
+        @metadata = Mobi::Metadata.new(@file)
       end
 
       it 'should instantiate a palm doc header' do
@@ -41,7 +44,7 @@ describe Mobi::Metadata do
 
   context 'instance' do
     before :all do
-      @metadata = Mobi::Metadata.new(file)
+      @metadata = Mobi::Metadata.new(@file)
     end
 
     it 'gets the the title of the book' do
