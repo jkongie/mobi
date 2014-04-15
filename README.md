@@ -37,20 +37,21 @@ metadata.author
 
 Supported metadata options are:
 
+* asin
 * author
-* publisher
-* imprint
+* contributor
 * description
+* imprint
 * isbn
-* subject
+* publisher
 * published_at
 * review
-* contributor
 * rights
-* subject_code
-* type
 * source
-* asin
+* subject
+* subject_code
+* title
+* type
 * version
 
 You can also drill down and get the PalmDOC and MOBI header details:
