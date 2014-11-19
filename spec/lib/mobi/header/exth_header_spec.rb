@@ -18,19 +18,19 @@ describe Mobi::Header::ExthHeader do
   end
 
   it 'gets the author' do
-    @header.author.should == 'Sir Arthur Conan Doyle'
+    expect(@header.author).to eq('Sir Arthur Conan Doyle')
   end
 
   it 'gets the book subject' do
-    @header.subject.should == 'Detective and mystery stories, English'
+    expect(@header.subject).to eq('Detective and mystery stories, English')
   end
 
   it 'gets the book rights' do
-    @header.rights.should == 'Public domain in the USA.'
+    expect(@header.rights).to eq('Public domain in the USA.')
   end
 
   it 'gets the book source' do
-    @header.source.should == 'http://www.gutenberg.org/files/2350/2350-h/2350-h.htm'
+    expect(@header.source).to eq('http://www.gutenberg.org/files/2350/2350-h/2350-h.htm')
   end
 
 end

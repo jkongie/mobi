@@ -14,31 +14,31 @@ describe Mobi::Header::PalmDocHeader do
   end
 
   it 'gets the raw compression_type' do
-    @header.raw_compression_type.should == 2
+    expect(@header.raw_compression_type).to eq(2)
   end
 
   it 'gets the compression type' do
-    @header.compression_type.should == 'PalmDOC'
+    expect(@header.compression_type).to eq('PalmDOC')
   end
 
   it 'gets the text length' do
-    @header.text_length.should == 57327
+    expect(@header.text_length).to eq(57327)
   end
 
   it 'gets the record_count' do
-    @header.record_count.should == 14
+    expect(@header.record_count).to eq(14)
   end
 
   it 'gets the record size' do
-    @header.record_size.should == 4096
+    expect(@header.record_size).to eq(4096)
   end
 
   it 'gets the raw encryption type' do
-    @header.raw_encryption_type.should == 0
+    expect(@header.raw_encryption_type).to eq(0)
   end
 
   it 'gets the encryption type' do
-    @header.encryption_type.should == 'None'
+    expect(@header.encryption_type).to eq('None')
   end
 
 end

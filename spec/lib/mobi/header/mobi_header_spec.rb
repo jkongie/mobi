@@ -13,67 +13,67 @@ describe Mobi::Header::MobiHeader do
   end
 
   it 'gets the identifier' do
-    @header.identifier.should == 'MOBI'
+    expect(@header.identifier).to eq('MOBI')
   end
 
   it 'gets the length of the MOBI header' do
-    @header.header_length.should == 232
+    expect(@header.header_length).to eq(232)
   end
 
   it 'gets the mobi type as an integer' do
-    @header.raw_mobi_type.should == 2
+    expect(@header.raw_mobi_type).to eq(2)
   end
 
   it 'gets the mobi type as a string' do
-    @header.mobi_type.should == 'MOBIpocket Book'
+    expect(@header.mobi_type).to eq('MOBIpocket Book')
   end
 
   it 'gets the raw text encoding' do
-    @header.raw_text_encoding.should == 65001
+    expect(@header.raw_text_encoding).to eq(65001)
   end
 
   it 'gets the text encoding' do
-    @header.text_encoding.should == 'UTF-8'
+    expect(@header.text_encoding).to eq('UTF-8')
   end
 
   it 'gets the unique id' do
-    @header.unique_id.should == 1532466569
+    expect(@header.unique_id).to eq(1532466569)
   end
 
   it 'gets the file version' do
-    @header.file_version.should == 6
+    expect(@header.file_version).to eq(6)
   end
 
   it 'gets the first non book index' do
-    @header.first_non_book_index.should == 16
+    expect(@header.first_non_book_index).to eq(16)
   end
 
   it 'gets the full name offset' do
-    @header.full_name_offset.should == 688
+    expect(@header.full_name_offset).to eq(688)
   end
 
   it 'gets the full name length' do
-    @header.full_name_length.should == 12
+    expect(@header.full_name_length).to eq(12)
   end
 
   it 'gets the raw locale code' do
-    @header.raw_locale_code.should == 9
+    expect(@header.raw_locale_code).to eq(9)
   end
 
   it 'gets the minimum supported mobipocket version' do
-    @header.minimum_supported_mobipocket_version.should == 6
+    expect(@header.minimum_supported_mobipocket_version).to eq(6)
   end
 
   it 'gets the first image index record number' do
-    @header.first_image_index_record_number.should == 19
+    expect(@header.first_image_index_record_number).to eq(19)
   end
 
   it 'gets the EXTH header flag' do
-    @header.exth_flag.should == 1
+    expect(@header.exth_flag).to eq(1)
   end
 
   it 'checks if there an EXTH header exists' do
-    @header.exth_header?.should be true
+    expect(@header.exth_header?).to be true
   end
 
 end
