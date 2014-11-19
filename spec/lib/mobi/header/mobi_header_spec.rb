@@ -73,7 +73,7 @@ describe Mobi::Header::MobiHeader do
   end
 
   it 'checks if there an EXTH header exists' do
-    @header.exth_header?.should be_true
+    @header.exth_header?.should be true
   end
 
 end

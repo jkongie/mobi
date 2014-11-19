@@ -52,7 +52,7 @@ describe Mobi::Metadata do
     end
 
     it 'is a bookmobi' do
-      @metadata.bookmobi?.should be_true
+      @metadata.bookmobi?.should be true
     end
 
     it 'defines delgate exth record method names to the exth record' do
