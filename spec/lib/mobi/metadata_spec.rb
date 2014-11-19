@@ -9,13 +9,13 @@ describe Mobi::Metadata do
 
 
   context 'initialization' do
-    it 'should instantiate a StreamSlicer from the file' do
+    it 'instantiates a StreamSlicer from the file' do
       metadata = Mobi::Metadata.new(@file)
 
       expect(metadata.data).to be_instance_of(Mobi::StreamSlicer)
     end
 
-    it 'should raise an exception if the book is not a mobi' do
+    it 'raises an exception if the book is not a mobi' do
       any_instance_of(Mobi::Metadata) do |m|
         mock(m).bookmobi? { false }
       end
@@ -28,15 +28,15 @@ describe Mobi::Metadata do
         @metadata = Mobi::Metadata.new(@file)
       end
 
-      it 'should instantiate a palm doc header' do
+      it 'instantiates a palm doc header' do
         expect(@metadata.palm_doc_header).to be_a Mobi::Header::PalmDocHeader
       end
 
-      it 'should instantiate a mobi header' do
+      it 'instantiates a mobi header' do
         expect(@metadata.mobi_header).to be_a Mobi::Header::MobiHeader
       end
 
-      it 'should instantiate a exth_header' do
+      it 'instantiates a exth_header' do
         expect(@metadata.exth_header).to be_a Mobi::Header::ExthHeader
       end
     end
