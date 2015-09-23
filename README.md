@@ -1,3 +1,5 @@
+<a href="https://codeclimate.com/github/jkongie/mobi"><img src="https://codeclimate.com/github/jkongie/mobi/badges/gpa.svg" /></a>
+
 # mobi
 
 A Ruby Gem that reads MOBI metadata.
